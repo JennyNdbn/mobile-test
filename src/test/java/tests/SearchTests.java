@@ -48,11 +48,12 @@ public class SearchTests extends TestBase {
     @Test
     public void searchIosTest() {
         step("Type search", () -> {
-            $(accessibilityId("Text Button")).click();
-            $(accessibilityId("Text Input")).sendKeys("hello@browserstack.com");
+            $(id("Text Button")).click();
+            $(id("Text Input")).sendKeys("hello@browserstack.com");
+            $(id("Text Input")).pressEnter();
         });
         step("Verify content found", () -> {
-            $(accessibilityId("Text Output")).shouldHave((text("hello@browserstack.com")));
+            $(id("Text Output")).shouldHave((text("hello@browserstack.com")));
         });
     }
 }

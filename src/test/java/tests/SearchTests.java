@@ -47,7 +47,7 @@ public class SearchTests extends TestBase {
     @Tag("ios")
     @Test
     public void searchIosTest() {
-        step("Type search", () -> {
+        step("iOS type search", () -> {
             $(id("Text Button")).click();
             $(id("Text Input")).sendKeys("hello@browserstack.com");
             $(id("Text Input")).pressEnter();

@@ -43,4 +43,16 @@ public class SearchTests extends TestBase {
             $(id("org.wikipedia.alpha:id/view_wiki_error_button")).click();
         });
     }
+
+    @Tag("ios")
+    @Test
+    public void searchIosTest() {
+        step("Type search", () -> {
+            $(accessibilityId("Text Button")).click();
+            $(id("Text Input")).sendKeys("hello@browserstack.com");
+        });
+        step("Verify content found", () -> {
+            $(id("Text Output")).shouldHave((text("hello@browserstack.com")));
+        });
+    }
 }

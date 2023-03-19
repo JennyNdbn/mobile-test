@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static io.appium.java_client.AppiumBy.accessibilityId;
@@ -23,5 +24,23 @@ public class SearchTests extends TestBase {
         step("Verify content found", () ->
                 $$(id("org.wikipedia.alpha:id/page_list_item_title"))
                         .shouldHave(sizeGreaterThan(0)));
+    }
+
+    @Test
+    @Tag("android")
+    void openPageTest() {
+        step("Type search", () -> {
+            $(accessibilityId("Search Wikipedia")).click();
+            $(id("org.wikipedia.alpha:id/search_src_text")).sendKeys("java");
+        });
+        step("Verify content found", () ->
+                $$(id("org.wikipedia.alpha:id/page_list_item_title"))
+                        .shouldHave(sizeGreaterThan(0)));
+        step("Open page", () ->
+        $(id("org.wikipedia.alpha:id/page_list_item_description")).click());
+        step("Verify error after opening the page", () -> {
+            $(id("org.wikipedia.alpha:id/view_wiki_error_text")).shouldHave(text("Error"));
+            $(id("org.wikipedia.alpha:id/view_wiki_error_button")).click();
+        });
     }
 }

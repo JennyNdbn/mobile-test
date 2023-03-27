@@ -1,7 +1,10 @@
-package tests;
+package tests.browserstack;
 
+import io.qameta.allure.Owner;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
+import tests.TestBase;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.text;
@@ -11,10 +14,11 @@ import static io.appium.java_client.AppiumBy.accessibilityId;
 import static io.appium.java_client.AppiumBy.id;
 import static io.qameta.allure.Allure.step;
 
-
+@Owner("Evgeniia Nadobnaia")
 public class SearchTests extends TestBase {
 
     @Test
+    @DisplayName("Successful search test for android")
     @Tag("android")
     void successfulSearchTest() {
         step("Type search", () -> {
@@ -27,6 +31,7 @@ public class SearchTests extends TestBase {
     }
 
     @Test
+    @DisplayName("Open page from wikipedia with error")
     @Tag("android")
     void openPageTest() {
         step("Type search", () -> {
@@ -44,8 +49,9 @@ public class SearchTests extends TestBase {
         });
     }
 
-    @Tag("ios")
     @Test
+    @DisplayName("Successful search test for iOS")
+    @Tag("ios")
     public void searchIosTest() {
         step("iOS type search", () -> {
             $(id("Text Button")).click();
